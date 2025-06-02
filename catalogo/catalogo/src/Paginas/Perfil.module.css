@@ -1,0 +1,40 @@
+.conteiner {
+    background-color: #181818;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 80vh;
+}
+
+/*colocando card pro perfil*/
+
+.cartao {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    width: 100%;
+}
+
+.foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid rgb(238, 50, 26); /*mantendo a cor vermelha*/
+}
+
+.nome {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(238, 50, 26);
+}
+
+.descricao {
+    font-size: 16px;
+    color: #ccc;
+}

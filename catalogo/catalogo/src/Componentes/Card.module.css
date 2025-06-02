@@ -1,0 +1,43 @@
+.conteiner {
+    position: relative;
+    width: 240px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.conteiner:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+}
+
+.poster {
+    width: 100%;
+    height: auto;
+    /* display: block; */
+}
+
+/* separando as info */
+
+.info {
+    padding: 10px;
+    color: #f0f0f0;
+}
+
+.info h3 {
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    color: rgb(238, 50, 26); /*vermelho do cabeçalho */
+}
+
+.info p {
+    font-size: 14px;
+    color: #ccc;
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
