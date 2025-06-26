@@ -1,0 +1,44 @@
+.filterContainer {
+  display: flex;
+  flex-direction: column;       /* empilha input e select na vertical */
+  gap: 1rem;                    /* espaço entre eles */
+  justify-content: center;
+  align-items: center;          /* centraliza horizontalmente */
+  margin-bottom: 1rem;
+}
+
+/* a partir de 640px de largura, muda para horizontal */
+@media (min-width: 640px) {
+  .filterContainer {
+    flex-direction: row;
+  }
+}
+
+.input {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 200px;
+  transition: border-color 0.2s ease;
+}
+
+/*  or da borda muda no foco do input */
+.input:focus {
+  border-color: #f08030;  
+  outline: none;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+/* cor da borda muda no foco do select */
+.select:focus {
+  border-color: #6890f0;  
+  outline: none;
+}

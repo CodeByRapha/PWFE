@@ -1,0 +1,22 @@
+.container {
+  min-height: 100vh;      /* ocupa a altura toda da tela */
+  width: 100vw;           /* ocupa toda a largura da tela */
+  padding: 2rem;
+  background: linear-gradient(to bottom, #ffcccb 0%, #ffffff 100%);
+  box-sizing: border-box; /* para o padding não aumentar a largura total */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2b2b2b;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
