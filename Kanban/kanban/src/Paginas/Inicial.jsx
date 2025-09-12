@@ -1,9 +1,8 @@
-import { BarraNavegacao } from "../Componentes/BarraNavegacao";
+import { BarraNavegacao } from "../Componentes/BarraNavegacao"
 import { Cabecalho } from "../Componentes/Cabecalho";
 import { Outlet } from "react-router-dom";
 
 export function Inicial(){
-
     return(
         <>
             <BarraNavegacao/>
@@ -11,5 +10,4 @@ export function Inicial(){
             <Outlet/>
         </>
     )
-
 }
