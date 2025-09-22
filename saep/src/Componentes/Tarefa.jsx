@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+//fazendo o uso do Drag
+import { useDraggable } from "@dnd-kit/core";//usando a biblioteca de arrastar
+ 
+ 
 export function Tarefa({ tarefa }) {
     const navigate = useNavigate();
-    const [novoStatus, setNovoStatus] = useState(tarefa.status); 
+    const [novoStatus, setNovoStatus] = useState(tarefa.status);
+ 
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+        id: tarefa.id,
+    });
+ 
+    const style = transform
+    ? { transform: `translate(${transform.x}px, ${transform.y}px)` }
+    : undefined;
+ 
     async function excluirTarefa(id) {
         if (window.confirm("Tem certeza que deseja excluir esta tarefa?")) {
             try {
@@ -17,9 +29,9 @@ export function Tarefa({ tarefa }) {
             }
         }
     }
-
+ 
     async function alterarStatus(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         try {
             await axios.patch(`http://127.0.0.1:8000/tarefa/${tarefa.id}/`, {
                 status: novoStatus,
@@ -31,9 +43,9 @@ export function Tarefa({ tarefa }) {
             alert("Erro ao alterar status.");
         }
     }
-
+ 
     return (
-        <article className="tarefa">
+        <article className="tarefa" ref ={setNodeRef} style={style}{...listeners}{...attributes}>
             <header>
                 <h3 id={`tarefa-${tarefa.id}`}>{tarefa.descricao}</h3>
             </header>
@@ -43,17 +55,17 @@ export function Tarefa({ tarefa }) {
                 <dt>Prioridade:</dt>
                 <dd>{tarefa.prioridade}</dd>
             </dl>
-
+ 
             <div className="tarefa__acoes">
                 <button type="button" onClick={() => navigate(`/editar/${tarefa.id}`)}>
                     Editar
                 </button>
-
+ 
                 <button type="button" aria-label="Excluir tarefa" onClick={() => excluirTarefa(tarefa.id)}>
                     Excluir
                 </button>
             </div>
-
+ 
             <form className="tarefa__status" onSubmit={alterarStatus}>
                 <label>Status:</label>
                 <select
@@ -72,3 +84,4 @@ export function Tarefa({ tarefa }) {
         </article>
     );
 }
+ 
