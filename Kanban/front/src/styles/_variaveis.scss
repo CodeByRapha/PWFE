@@ -1,0 +1,21 @@
+$background: #FDFDFD; // Fundo geral clarinho, quase branco
+$primary: #1B3B5F;     // Texto principal azul escuro, mas não pesado
+$fundo: #E6F0FA;       // Fundo dos cards, azul bem suave, pastel
+$secondary: #A8CFFF;   // Detalhes, hover nos cards, azul clarinho
+$accent: #5B9BF3;      // Destaques, botões, tags, azul suave mas perceptível
+$navbar: #CDE4FF;      // Navbar azul pastel bem suave
+
+$text-primary: $primary;       // Texto principal
+$text-background: $background; // Texto sobre elementos escuros
+$font-primary: "Poppins";
+$font-size: 16px;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
+body{
+    background-color: $background;
+}
