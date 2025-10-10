@@ -11,8 +11,8 @@ import { zodResolver } from '@hookform/resolvers/zod'; // é o que liga o hook f
 // validação de formulario -- estou usadno as regras do zod, que pode ser consultada na web
 const schemaCadUsuario = z.object({
     nome: z.string()
-        .min(1, ' Insira ao menos 1 caractere')
-        .max(100, 'Insira no maximo 100 caracteres')
+        .min(1, 'Insira ao menos 1 caractere')
+        .max(100, 'Insira no máximo 100 caracteres')
         .regex(
             /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/,
             "Digite nome completo (nome e sobrenome), sem números ou símbolos, sem espaços no início e fim"
@@ -43,13 +43,14 @@ export function CadUsuario() {
         let valor = e.target.value;
         valor = valor.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ ]+/g, ""); // só letras e espaço
         valor = valor.replace(/\s{2,}/g, " "); // evita espaços duplos
-        if (valor.length > 100) valor = valor.slice(0, 100); // máximo 30 chars
+        valor = valor.trimStart(); // remove espaços no início
+        if (valor.length > 100) valor = valor.slice(0, 100); // máximo 100 chars
         setValue("nome", valor)
     };
 
     const handleEmailChange = (e) => {
         let valor = e.target.value.trim();
-        if (valor.length > 255) valor = valor.slice(0, 255); // máximo 50 chars
+        if (valor.length > 255) valor = valor.slice(0, 255); // máximo 255 chars
         setValue("email", valor, { shouldValidate: true});
     };
 

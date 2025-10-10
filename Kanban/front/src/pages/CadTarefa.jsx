@@ -59,7 +59,7 @@ export function CadTarefa() {
     reset // função para limpar o form
   } = useForm({
     resolver: zodResolver(schemaCadTarefa), // para validar eu chamo o resolver
-    defaultValues: { status: 'A fazer' } // valor padrão do status
+    defaultValues: { status: 'A fazer', prioridade: '' } // valor padrão do status
   });
 
   // useEffect para buscar usuários do back-end
@@ -147,7 +147,7 @@ export function CadTarefa() {
       >
         <option value="">Selecione o nível de prioridade</option>
         <option value="Baixa">Baixa</option>
-        <option value="Media">Média</option>
+        <option value="Media">Media</option>
         <option value="Alta">Alta</option>
       </select>
       {errors.prioridade && <p id="prioridade-error" className='errors'>{errors.prioridade.message}</p>}
@@ -160,7 +160,6 @@ export function CadTarefa() {
         aria-invalid={errors.status ? "true" : "false"}
         aria-describedby={errors.status ? "status-error" : undefined}
       >
-        <option value="">Selecione o status da tarefa</option>
         <option value="A fazer">A fazer</option>
         <option value="Fazendo">Fazendo</option>
         <option value="Pronto">Pronto</option>
