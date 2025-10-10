@@ -5,7 +5,7 @@ export function Navbar(){
         <nav className="barra">
             <ul>
                 <li>
-                    <Link to = '/cadUsusario'>
+                    <Link to = '/cadUsuario'>
                         Cadastro de Usuário
                     </Link>
                 </li>
