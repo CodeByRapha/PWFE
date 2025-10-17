@@ -1,0 +1,63 @@
+@use './variaveis' as *;
+
+.inicial {
+  position: relative; // permite posicionar filhos absolutos
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  // imagem de fundo
+  .dta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // cobre a tela sem distorcer
+    z-index: 1; // fica atrás
+  }
+
+  // botão "entrar"
+  .entrar {
+    position: fixed;          // Fica fixo na tela
+    bottom: 80px;             // Distância do rodapé
+    left: 50%;                // Centraliza horizontalmente
+    transform: translateX(-50%);
+    z-index: 2;               // Fica por cima da imagem
+
+    background: $botao-azul;
+    color: #fff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: $sombrasBox;
+    transition: transform 0.2s, background 0.3s;
+
+    &:hover {
+      transform: translateX(-50%) scale(1.05); // mantém o centramento mesmo com o hover
+      background: $botao-amarelo;
+      color: #04010f;
+    }
+
+    &:focus {
+      outline: 3px solid #ffd700;
+      outline-offset: 3px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
