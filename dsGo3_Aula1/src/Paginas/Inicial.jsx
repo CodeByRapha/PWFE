@@ -1,4 +1,4 @@
-import dta from '../assets/dta.jpg';
+import miranha from '../assets/miranha.jpg';
 import { useNavigate } from 'react-router-dom';
 
 export function Inicial() {
@@ -6,7 +6,7 @@ export function Inicial() {
 
   return (
     <main className="inicial">
-      <img src={dta} className="dta" alt="logo dta DS GO" />
+      <img src={miranha} className="miranha" alt="fundo miranha" />
   
       <button onClick={() => navigate('/dsgo')} className="entrar">
        Entrar

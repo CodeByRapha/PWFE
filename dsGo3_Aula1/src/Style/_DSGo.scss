@@ -1,5 +1,5 @@
 .corpo {
-  background-image: url('../assets/fundo_dta.jpg'); 
+  background-image: url('../assets/fundo.jpg'); 
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center; 
@@ -12,7 +12,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: #6e676740; // cerca de 25% opaco
+    // background: #6e676740; // cerca de 25% opaco
     // backdrop-filter: blur(1.5px); 
   }
 

@@ -1,15 +1,21 @@
 $fundo: #04010f;
 $claro: #f0ebeb;
-$card:#dcdff2;
+$card: #dcdff2;
 $sombrasBox: 0 4px 10px rgba(0, 0, 0, 0.3);
-$destaque-rosa: #ff3d7f transparent;
-$gradiente-rosa: linear-gradient(135deg, #2f1048, #e4018d);
+
+// Destaque e gradiente combinando com a foto (lilás/roxo suave)
+$destaque-rosa: #a07fff; // substitui o rosa por um lilás
+$gradiente-rosa: linear-gradient(135deg, #6650c9, #b7a4ff); // gradiente lilás/roxo suave
 $foco: #4c0f32;
-$botao-azul: linear-gradient(135deg, #2cd0e5, #2553af);
-$botao-amarelo: linear-gradient(135deg, #b9820b, #ede203);
+
+// botao azul agora tá num tom lilás/roxo mais suave
+$botao-azul: linear-gradient(135deg, #b7a4ff, #6650c9); // mantém contraste
+
+// botao amarelo trocado pra um dourado mais equilibrado
+$botao-amarelo: linear-gradient(135deg, #f3d37b, #e4b14c);
+
 $box-fundo: rgba(0, 0, 0, 0.8);
 $borda: 1px solid $fundo;
-
 
 * {
   margin: 0;
@@ -23,7 +29,6 @@ body {
   height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
-
 }
 
 /* BOTÃO */
@@ -32,13 +37,13 @@ button {
   align-self: center;
   background: $gradiente-rosa;
   color: $claro;
-  border: none;
   padding: 0.7rem 1.4rem;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
   gap: 20px;
+  border: none;
 }
 
 button:hover {
@@ -48,7 +53,7 @@ button:hover {
 }
 
 button:focus {
-  outline: 3px solid #4c0f32;
+  outline: 3px solid $foco;
   outline-offset: 3px;
 }
 
