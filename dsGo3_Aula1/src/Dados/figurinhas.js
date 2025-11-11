@@ -1,18 +1,22 @@
 // src/Dados/figurinhas.js
+import miranhaRedondo from "../assets/miranha_redondo.png";
+import miranhaLado from "../assets/miranha_lado.png";
+import miranhaTeia from "../assets/miranha_teia.png";
+
 export const figurinhas = [
   {
     id: 1,
-    nome: "Dragão",
-    imagem: "/assets/figurinhas/dragao.png"
+    nome: "Mini Miranha",
+    img: miranhaRedondo
   },
   {
     id: 2,
-    nome: "Unicórnio",
-    imagem: "/assets/figurinhas/unicornio.png"
+    nome: "Miranha travesso",
+    img: miranhaLado
   },
   {
     id: 3,
-    nome: "Robô",
-    imagem: "/assets/figurinhas/robo.png"
+    nome: "Homem-Aranha",
+    img: miranhaTeia
   }
 ];

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { missoes } from '../Dados/dadosMissao';
 import { MissaoCard } from '../Componentes/MissaoCard';
 import { MissaoModal } from '../Componentes/MissaoModal';
+import { HeaderVoltar } from '../Componentes/HeaderVoltar';
 
 export function Missao() {
   const [missaoSelecionada, setMissaoSelecionada] = useState(null);
@@ -9,30 +10,36 @@ export function Missao() {
 
   const concluirMissao = (id) => {
     setMissoesConcluidas((prev) => [...prev, id]); // marca como concluída
-    // modal não fecha automaticamente
   };
 
   return (
-    <section className='conteiner'>
-      <h2>Missões</h2>
-      <div className="missoes-grid">
-        {missoes.map((m) => (
-          <MissaoCard
-            key={m.id} 
-            missao={m}  
-            onIniciarMissao={setMissaoSelecionada} 
-            concluida={missoesConcluidas.includes(m.id)} 
-          />
-        ))}
-      </div>
+    <>
+      
+      <HeaderVoltar/>
 
-      {missaoSelecionada && (
-        <MissaoModal 
-          missao={missaoSelecionada} 
-          onClose={() => setMissaoSelecionada(null)} 
-          onConcluir={() => concluirMissao(missaoSelecionada.id)} 
-        />
-      )}
-    </section>
+      {/* Conteúdo da página */}
+      <section className='conteiner'>
+        <h2>Missões</h2>
+
+        <div className="missoes-grid">
+          {missoes.map((m) => (
+            <MissaoCard
+              key={m.id} 
+              missao={m}  
+              onIniciarMissao={setMissaoSelecionada} 
+              concluida={missoesConcluidas.includes(m.id)} 
+            />
+          ))}
+        </div>
+
+        {missaoSelecionada && (
+          <MissaoModal 
+            missao={missaoSelecionada} 
+            onClose={() => setMissaoSelecionada(null)} 
+            onConcluir={() => concluirMissao(missaoSelecionada.id)} 
+          />
+        )}
+      </section>
+    </>
   );
 }
