@@ -1,92 +1,149 @@
-@use './variaveis' as *;
-.inventario {
-  padding: 2rem;
-  text-align: center;
-  color: #fff;
+.inventario-container {
   min-height: 100vh;
+  color: #fff;
+  text-align: center;
+  background-image: url('../assets/fundo-inventario.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
 
-  h2 {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+/* overlay escura */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+/* conteúdo central */
+.inventario-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+
+  /* centralizar título e botão */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inventario-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #eae6ff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* botão de limpar inventário */
+.limpar-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff3b3b;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.limpar-btn:hover {
+  background-color: #e63232;
+}
+
+/* feedback de vitória/erro */
+.feedback {
+  margin-top: 1rem;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+}
+
+/* grid das figurinhas */
+.inventario-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-items: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 0 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* card das figurinhas */
+.inventario-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 0.6rem;
+  color: #fff;
+  width: 110px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.inventario-card:hover {
+  transform: scale(1.08);
+  background: rgba(255,255,255,0.25);
+}
+
+.inventario-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+}
+
+.inventario-card p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #eae6ff;
+}
+
+/* texto vazio */
+.inventario-empty {
+  color: #ccc;
+  margin-top: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .inventario-content h2 {
+    font-size: 1.4rem;
   }
 
-  .vazio {
-    font-size: 1.2rem;
-    color: #ccc;
-  }
-
-  /* Grid responsivo para exibir as figurinhas */
-  .grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    justify-items: center;
-    margin-top: 15px;
-  }
-
-  .figurinha {
-    background: $card;
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: 0 0 8px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
-    width: 100%;
-    max-width: 150px;
-    color:$fundo;
-
-    &:hover {
-      transform: scale(1.05);
-    }
+  .inventario-card {
+    width: 95px;
 
     img {
-      width: 100%;
-      max-width: 100px;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      margin: 0;
-      font-weight: bold;
-      font-size: 1rem;
+      width: 70px;
+      height: 70px;
     }
   }
-}
 
-/* 🔹 Responsividade */
-@media (max-width: 768px) {
-  .inventario {
-    padding: 1rem;
-
-    h2 {
-      font-size: 1.5rem;
-    }
-
-    .grid {
-      gap: 0.5rem;
-    }
-
-    .figurinha {
-      padding: 0.8rem;
-    }
+  .limpar-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
-}
 
-@media (max-width: 480px) {
-  .inventario {
-    h2 {
-      font-size: 1.2rem;
-    }
-
-    .figurinha {
-      max-width: 100px;
-
-      img {
-        max-width: 80px;
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
-    }
+  .feedback img {
+    width: 80px;
+    height: 80px;
   }
 }

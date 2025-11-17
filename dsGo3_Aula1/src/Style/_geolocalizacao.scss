@@ -1,0 +1,67 @@
+.geoLocal {
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  background: url('/assets/fundo.jpg') center/cover no-repeat; // sem scroll
+
+  // camada escura em cima
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 0;
+  }
+
+  &__conteudo {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1rem;
+  }
+
+  &__titulo {
+    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    margin-bottom: .3rem;
+    color: #eae6ff;
+  }
+
+  &__txt {
+    opacity: 0.85;
+    margin-bottom: 1rem;
+    color: #eae6ff;
+  }
+
+  &__erro {
+    color: #ffbaba;
+    margin-bottom: .5rem;
+  }
+
+  &__info {
+    background-color: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 1rem 1.4rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(2px);
+  }
+
+  &__mapa {
+    height: 60vh;
+    width: min(90%, 700px);
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.25);
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.32);
+  }
+
+  &__carregando {
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: .9;
+  }
+}

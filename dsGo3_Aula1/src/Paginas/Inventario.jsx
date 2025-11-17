@@ -1,148 +1,62 @@
-import { useState } from "react";
-import { figurinhas as todasFigurinhas } from "../Dados/figurinhas";
-import { HeaderVoltar } from "../Componentes/HeaderVoltar"; 
+// src/Paginas/Inventario.jsx
+import { useEffect, useState } from "react";
+import { HeaderVoltar } from "../Componentes/HeaderVoltar";
+import "../Style/_inventario.scss";
+
+// importar figurinhas de feedback
+import winImg from "../assets/win.png";
+import erroImg from "../assets/erro.png";
 
 export function Inventario() {
   const [inventario, setInventario] = useState([]);
+  const [feedback, setFeedback] = useState(null); // null | 'win' | 'erro'
 
-  const adicionarFigurinha = (id) => {
-    const figurinha = todasFigurinhas.find((f) => f.id === id);
-    if (figurinha) setInventario([...inventario, figurinha]);
+  useEffect(() => {
+    const dadosSalvos = JSON.parse(localStorage.getItem("inventario")) || [];
+    setInventario(dadosSalvos);
+  }, []);
+
+  const limparInventario = () => {
+    localStorage.removeItem("inventario");
+    setInventario([]);
+    // mostrar feedback de erro ao limpar (opcional)
+    setFeedback("erro");
+    setTimeout(() => setFeedback(null), 1500);
   };
 
-  const limparInventario = () => setInventario([]);
-
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        color: "#fff",
-        textAlign: "center",
-        backgroundImage: "url('/assets/fundo-inventario.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        position: "relative",
-      }}
-    >
-      {/* Header fixo e translúcido */}
+    <div className="inventario-page">
       <HeaderVoltar />
 
-      {/* Overlay escuro */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(0,0,0,0.6)",
-          zIndex: 0,
-        }}
-      ></div>
+      <div className="inventario-content">
+        {/* Título centralizado */}
+        <h2>Meu Inventário do Miranha 🕷️</h2>
 
-      {/* Conteúdo */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          padding: "2rem",
-        }}
-      >
-        <h2
-          style={{
-            marginBottom: "1.5rem",
-            fontSize: "1.8rem",
-            fontWeight: "bold",
-            color: "#eae6ff",
-            textShadow: "0 2px 6px rgba(0,0,0,0.4)",
-          }}
-        >
-          Meu Inventário do Miranha 🕷️
-        </h2>
+        {/* Botão centralizado */}
+        <button className="limpar-btn" onClick={limparInventario}>
+          Limpar Inventário
+        </button>
 
-        {/* Botões */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "0.6rem",
-            marginBottom: "1.5rem",
-          }}
-        >
-          <button onClick={() => adicionarFigurinha(1)}>
-            Adicionar Mini Miranha
-          </button>
-          <button onClick={() => adicionarFigurinha(2)}>
-            Adicionar Miranha Travesso
-          </button>
-          <button onClick={() => adicionarFigurinha(3)}>
-            Adicionar Homem-Aranha
-          </button>
-          <button onClick={limparInventario}>Limpar Inventário</button>
-        </div>
+        {/* Feedback de vitória/erro */}
+        {feedback && (
+          <div className="feedback">
+            <img
+              src={feedback === "win" ? winImg : erroImg}
+              alt={feedback}
+              style={{ width: "100px", marginTop: "10px" }}
+            />
+          </div>
+        )}
 
-        {/* Grid das figurinhas */}
+        {/* Lista de figurinhas */}
         {inventario.length === 0 ? (
-          <p style={{ color: "#ccc" }}>Nenhuma figurinha no inventário</p>
+          <p className="inventario-empty">Nenhuma figurinha no inventário</p>
         ) : (
-          <div
-            style={{
-              display: "grid",
-              gap: "0.8rem",
-              gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
-              justifyItems: "center",
-              alignItems: "center",
-              marginTop: "10px",
-              padding: "0 1rem",
-              maxWidth: "800px",
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            {inventario.map((f, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "rgba(255,255,255,0.15)",
-                  borderRadius: "12px",
-                  padding: "0.6rem",
-                  color: "#fff",
-                  width: "110px",
-                  textAlign: "center",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                  transition: "transform 0.2s ease, background 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.08)";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.25)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.15)";
-                }}
-              >
-                <img
-                  src={f.img}
-                  alt={f.nome}
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "contain",
-                    marginBottom: "0.3rem",
-                    borderRadius: "8px",
-                  }}
-                />
-                <p
-                  style={{
-                    margin: 0,
-                    fontWeight: "bold",
-                    fontSize: "0.85rem",
-                    color: "#eae6ff",
-                  }}
-                >
-                  {f.nome}
-                </p>
+          <div className="inventario-grid">
+            {inventario.map((f) => (
+              <div key={f.id} className="inventario-card">
+                <img src={f.img} alt={f.nome} />
+                <p>{f.nome}</p>
               </div>
             ))}
           </div>

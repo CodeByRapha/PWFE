@@ -1,63 +1,66 @@
 @use './variaveis' as *;
 
+// container geral da tela inicial
 .inicial {
   position: relative; // permite posicionar filhos absolutos
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  min-height: 100dvh; // ajuda no mobile pra não cortar nada
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden; // impede qualquer tipo de rolagem
+  max-width: 100vw; // evita que algum elemento estoure a largura
 
   // imagem de fundo
   .miranha {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0; // atalho para top, right, bottom, left = 0
     width: 100%;
     height: 100%;
     object-fit: cover; // cobre a tela sem distorcer
     z-index: 1; // fica atrás
+    pointer-events: none; // só visual, não é clicável
+    user-select: none; // evita selecionar sem querer
   }
 
   // botão "entrar"
   .entrar {
-    position: fixed;          // Fica fixo na tela
-    bottom: 80px;             // Distância do rodapé
-    left: 50%;                // Centraliza horizontalmente
+    position: absolute;
+    bottom: 8%; // fica mais suave e responsivo
+    left: 50%;
     transform: translateX(-50%);
-    z-index: 2;               // Fica por cima da imagem
+    z-index: 2; // garante que está acima da imagem
 
     background: $botao-azul;
     color: #fff;
-    padding: 15px 40px;
+    padding: 0.9rem 2.2rem;
     border: none;
     border-radius: 30px;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.3rem); // deixa o texto responsivo no automático
     font-weight: bold;
     cursor: pointer;
     box-shadow: $sombrasBox;
     transition: transform 0.2s, background 0.3s;
+    white-space: nowrap; // evita quebrar em telas menores
 
     &:hover {
-      transform: translateX(-50%) scale(1.05); // mantém o centramento mesmo com o hover
+      transform: translateX(-50%) scale(1.05);
       background: $botao-amarelo;
       color: #04010f;
     }
 
-    &:focus {
+    &:focus-visible {
       outline: 3px solid #ffd700;
       outline-offset: 3px;
     }
   }
 
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
+  // responsividade mobile
+  @media (max-width: 480px) {
+    .entrar {
+      bottom: 10%;
+      padding: 0.8rem 2rem;
     }
   }
 }

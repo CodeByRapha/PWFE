@@ -1,10 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import { Menu } from '../Componentes/Menu';
 
-export function DSGo() {
+export function DSpider() {
   return (
-    <main className="corpo" style={{ minHeight: "100vh", position: "relative" }}>
+    <main 
+      className="corpo"
+      role="main" 
+      aria-label="Área principal da aplicação" 
+    >
+
       <Outlet />
+
       <Menu />
     </main>
   );

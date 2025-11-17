@@ -11,6 +11,12 @@
   background: rgba(104, 104, 104, 0.7);
   border-radius: 1rem;
   padding: 1rem;
+
+  /* só pra dar acessibilidade no modo tab */
+  &:focus-within {
+    outline: 2px solid white;
+    outline-offset: 5px;
+  }
 }
 
 .menu ul {
@@ -27,6 +33,14 @@
 .menu li {
   flex: 1 1 100px; 
   text-align: center;
+  cursor: pointer;
+  /* deixei esse hover pra feedback visual */
+  transition: transform .15s ease;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 }
 
 .menu figure {
@@ -36,6 +50,7 @@
   margin: 0;
   color: white;
   font-size: 1rem;
+  user-select: none; // evitar seleção acidental
 }
 
 .menu img {
@@ -44,4 +59,10 @@
   margin-bottom: 0.5rem;
 }
 
-
+/* responsividade básica  */
+@media (max-width: 480px) {
+  .menu img {
+    width: 45px;
+    height: 45px;
+  }
+}

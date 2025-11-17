@@ -1,0 +1,74 @@
+.camera-container {
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+  background-image: url('/assets/fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.camera-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.camera-conteudo {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.camera-titulo {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #eae6ff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.camera-preview {
+  margin-top: 1rem;
+}
+
+.camera-video {
+  width: 90%;           /* largura responsiva */
+  max-width: 800px;     /* aumenta o limite do tamanho */
+  height: 60vh;         /* deixa o vídeo mais comprido, ocupa 60% da altura da tela */
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background-color: #000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  object-fit: cover;    /* preenche o vídeo sem distorcer */
+}
+
+.camera-placeholder {
+  width: 90%;
+  max-width: 800px;     /* aumenta o placeholder também */
+  height: 60vh;         /* deixa proporcional ao vídeo */
+  margin: 1rem auto;
+  padding: 2rem;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 12px;
+}
+
+.camera-botoes {
+  margin-top: 1rem;
+}
+
+@media (max-width: 500px) {
+  .camera-titulo {
+    font-size: 1.5rem;
+  }
+
+  .camera-video,
+  .camera-placeholder {
+    width: 100%;
+    height: 50vh;       /* ajusta a altura para telas pequenas */
+    max-width: none;
+  }
+}

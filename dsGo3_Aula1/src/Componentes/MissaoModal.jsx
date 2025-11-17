@@ -1,11 +1,11 @@
 import { useState } from "react";
 import sucesso from "../assets/win.png";
-import erro from "../assets/raios.png";
+import erro from "../assets/erro.png";
 
 export function MissaoModal({ missao, onClose, onConcluir }) {
   const [resposta, setResposta] = useState("");
-  const [resultado, setResultado] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [resultado, setResultado] = useState(null); // mensagem texto
+  const [status, setStatus] = useState(null); // "sucesso" | "erro"
 
   const verificarResposta = () => {
     if (!resposta.trim()) {
@@ -20,21 +20,33 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
       setResultado("Resposta correta! Parabéns!");
       setStatus("sucesso");
 
-      // ✅ chama a função de concluir após 1s (tempo para mostrar feedback)
+      // chama onConcluir após 1s
       setTimeout(() => {
         onConcluir(missao.id);
+        setResultado(null); // limpa mensagem
+        setStatus(null); // limpa status
+        setResposta(""); // limpa input
       }, 1000);
     } else {
+      // resposta incorreta
       setResultado("Resposta incorreta. Tente novamente!");
       setStatus("erro");
+      // mantém a imagem de erro até o usuário digitar novamente
     }
   };
 
   return (
-    <dialog open className="modal">
+    <dialog
+      open
+      className="modal"
+      aria-labelledby="titulo-missao"
+      aria-describedby="descricao-missao"
+      role="dialog"
+    >
       <h2 className="titulo" id="titulo-missao">
         {missao.titulo}
       </h2>
+
       <p id="descricao-missao">{missao.descricao}</p>
 
       <label htmlFor="resposta" className="sr-only">
@@ -48,28 +60,38 @@ export function MissaoModal({ missao, onClose, onConcluir }) {
         value={resposta}
         onChange={(e) => setResposta(e.target.value)}
         required
+        aria-required="true"
       />
 
       <div className="modal-botoes">
-        <button onClick={verificarResposta}>Enviar</button>
-        <button onClick={onClose}>Fechar</button>
+        <button onClick={verificarResposta} aria-label="Enviar resposta da missão">
+          Enviar
+        </button>
+        <button onClick={onClose} aria-label="Fechar janela da missão">
+          Fechar
+        </button>
       </div>
 
+      {/* feedback visual */}
       {resultado && (
-        <div className="resultado">
+        <div className="resultado" role="alert">
           <p>{resultado}</p>
+
           {status === "sucesso" && (
             <img
               src={sucesso}
               alt="Missão concluída com sucesso"
               width="100"
+              loading="lazy"
             />
           )}
+
           {status === "erro" && (
             <img
               src={erro}
               alt="Erro na resposta da missão"
               width="100"
+              loading="lazy"
             />
           )}
         </div>

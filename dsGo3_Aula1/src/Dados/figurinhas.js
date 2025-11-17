@@ -1,4 +1,3 @@
-// src/Dados/figurinhas.js
 import miranhaRedondo from "../assets/miranha_redondo.png";
 import miranhaLado from "../assets/miranha_lado.png";
 import miranhaTeia from "../assets/miranha_teia.png";

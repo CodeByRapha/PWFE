@@ -6,44 +6,49 @@ import { Link } from 'react-router-dom';
 
 export function Menu() {
     return (
-        <div className='menu'>
-            <ul>
-                <Link to="missao">
-                    <li>
+        // container do menu
+        <nav className='menu' aria-label="Menu principal de navegação">
+            {/* usando ul corretamente e mantendo sua estrutura */}
+            <ul role="menu">
+                
+                {/* adicionei role e aria pra acessibilidade */}
+                <Link to="missao" role="menuitem" aria-label="Ir para Missões">
+                    <li tabIndex="0">
                         <figure>
-                            <img src={missao} alt="Missões" />
+                            <img src={missao} alt="Missões" loading="lazy" />
                             <figcaption>Missões</figcaption>
                         </figure>
                     </li>
                 </Link>
 
-                <Link to="inventario">
-                    <li>
+                <Link to="inventario" role="menuitem" aria-label="Ir para Inventário">
+                    <li tabIndex="0">
                         <figure>
-                            <img src={bau} alt="Inventário" />
+                            <img src={bau} alt="Inventário" loading="lazy" />
                             <figcaption>Inventário</figcaption>
                         </figure>
                     </li>
                 </Link>
 
-                <Link to="mapa">
-                    <li>
+                <Link to="mapa" role="menuitem" aria-label="Ir para GeoLocalização">
+                    <li tabIndex="0">
                         <figure>
-                            <img src={mapa} alt="GeoLocalização" />
+                            <img src={mapa} alt="GeoLocalização" loading="lazy" />
                             <figcaption>GeoLocalização</figcaption>
                         </figure>
                     </li>
                 </Link>
 
-                <Link to="camera">
-                    <li>
+                <Link to="camera" role="menuitem" aria-label="Ir para câmera">
+                    <li tabIndex="0">
                         <figure>
-                            <img src={camera} alt="Camera" />
-                            <figcaption>Camera</figcaption>
+                            <img src={camera} alt="Camera" loading="lazy" />
+                            <figcaption>Câmera</figcaption>
                         </figure>
                     </li>
                 </Link>
+                
             </ul>
-        </div>
-    )
+        </nav>
+    );
 }

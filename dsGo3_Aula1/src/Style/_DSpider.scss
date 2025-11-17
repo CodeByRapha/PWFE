@@ -1,0 +1,31 @@
+.corpo {
+  background-image: url('../assets/fundo.jpg');
+  background-size: cover; // deixa a img sempre preenchendo
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh; // ocupa 100% da tela
+  min-height: 100dvh; // ajusta em celulares modernos
+  position: relative;
+  overflow: hidden; // impede qualquer scroll (horizontal ou vertical)
+  max-width: 100vw; // evita estouro lateral
+
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    // background: #6e676740; // cerca de 25% opaco (comentei para não interferir)
+    // backdrop-filter: blur(1.5px); // ativar efeito
+    pointer-events: none; // evita interação acidental
+    user-select: none;
+    z-index: 0;
+  }
+
+  // garante que o conteúdo fique acima do fundo
+  > * {
+    position: relative;
+    z-index: 1;
+    max-width: 100%; // garante que nada estoure a tela
+  }
+}

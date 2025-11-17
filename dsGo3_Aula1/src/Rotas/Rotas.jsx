@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Inicial } from "../Paginas/Inicial";
-import { DSGo } from "../Paginas/DSGo";
+import { DSpider } from "../Paginas/DSpider";
 import { Missao } from "../Paginas/Missao";
 import { Inventario } from "../Paginas/Inventario";
 import { Camera } from "../Paginas/Camera";
@@ -10,8 +10,8 @@ export function Rotas() {
   return (
     <Routes>
       <Route path="/" element={<Inicial />} />
-      <Route path="/dsgo" element={<DSGo />}>
-        <Route index element={<Missao />} /> {/* Tela padrão */}
+      <Route path="/dspider" element={<DSpider />}>
+        <Route index element={<Missao />} /> {/* telaaaaa padrão */}
         <Route path="missao" element={<Missao />} />
         <Route path="inventario" element={<Inventario />} />
         <Route path="camera" element={<Camera />} />
